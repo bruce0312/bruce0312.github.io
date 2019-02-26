@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="初衷由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。 安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.xx">
+<meta name="description" content="初衷 由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。  安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.">
 <meta name="keywords" content="kubernetes,docker,linux,questions">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kubernetes 基础环境搭建及问题记录">
 <meta property="og:url" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/index.html">
 <meta property="og:site_name" content="Nowhere">
-<meta property="og:description" content="初衷由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。 安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.xx">
+<meta property="og:description" content="初衷 由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。  安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route.png">
@@ -93,10 +93,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route-q2.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q1.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
-<meta property="og:updated_time" content="2019-02-26T11:34:10.702Z">
+<meta property="og:updated_time" content="2019-02-26T11:35:35.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kubernetes 基础环境搭建及问题记录">
-<meta name="twitter:description" content="初衷由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。 安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.xx">
+<meta name="twitter:description" content="初衷 由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。  安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.">
 <meta name="twitter:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
 
 
@@ -349,7 +349,9 @@
       
 
       
-        <h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><p>由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。</p>
+        <h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><ul>
+<li>由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。</li>
+</ul>
 <h1 id="安装前期准备工作"><a href="#安装前期准备工作" class="headerlink" title="安装前期准备工作"></a>安装前期准备工作</h1><blockquote>
 <p>环境准备 ubuntu 16.04.5 server x64 lts</p>
 </blockquote>
