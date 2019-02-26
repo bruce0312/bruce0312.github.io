@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="kubernetes,docker,linux,questions," />
 
 
 
@@ -79,16 +79,25 @@
 
 
 
-<meta name="description" content="一只测试汪不定时更新的日常">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Nowhere">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="初衷由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。 安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.xx">
+<meta name="keywords" content="kubernetes,docker,linux,questions">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kubernetes 基础环境搭建及问题记录">
+<meta property="og:url" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/index.html">
 <meta property="og:site_name" content="Nowhere">
-<meta property="og:description" content="一只测试汪不定时更新的日常">
+<meta property="og:description" content="初衷由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。 安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.xx">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route-q1.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route-q2.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q1.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
+<meta property="og:updated_time" content="2019-02-26T11:34:10.702Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nowhere">
-<meta name="twitter:description" content="一只测试汪不定时更新的日常">
+<meta name="twitter:title" content="kubernetes 基础环境搭建及问题记录">
+<meta name="twitter:description" content="初衷由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。 安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.xx">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
 
 
 
@@ -118,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/"/>
 
 
 
 
 
-  <title>Nowhere</title>
+  <title>kubernetes 基础环境搭建及问题记录 | Nowhere</title>
   
 
 
@@ -143,8 +152,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -237,9 +245,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -269,9 +277,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/26/kubernetes-基础环境搭建及问题记录/" itemprop="url">kubernetes 基础环境搭建及问题记录</a></h1>
+          <h1 class="post-title" itemprop="name headline">kubernetes 基础环境搭建及问题记录</h1>
         
 
         <div class="post-meta">
@@ -343,9 +349,7 @@
       
 
       
-        
-          
-            <h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><p>由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。</p>
+        <h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><p>由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。</p>
 <h1 id="安装前期准备工作"><a href="#安装前期准备工作" class="headerlink" title="安装前期准备工作"></a>安装前期准备工作</h1><blockquote>
 <p>环境准备 ubuntu 16.04.5 server x64 lts</p>
 </blockquote>
@@ -419,8 +423,6 @@
 </ul>
 <img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
 
-          
-        
       
     </div>
     
@@ -435,356 +437,42 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/基于Github和Hexo的博客搭建踩坑记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bruce">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nowhere">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/29/基于Github和Hexo的博客搭建踩坑记/" itemprop="url">基于Github和Hexo的博客搭建踩坑记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T00:39:51+08:00">
-                2018-08-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/kubernetes/" rel="tag"># kubernetes</a>
           
-
+            <a href="/tags/docker/" rel="tag"># docker</a>
           
-            
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
-
+            <a href="/tags/questions/" rel="tag"># questions</a>
           
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><ul>
-<li>我为什么要搭建自己的blog？<ul>
-<li>很早就有搭建博客的想法，但是平时记录一些东西是有道云笔记用的多一点，所以一直都没有行动起来。最近受小伙伴的鼓舞，决定把博客搭建起来并把搭建的过程记录下来，让他们也可以学习一下快速搭建一个blog。</li>
-</ul>
-</li>
-<li>我为什么选择hexo来搭建我的blog？<ul>
-<li>网上关于hexo的教程很多，可以快速找到搭建资料并解决搭建过程中遇到的问题。个人觉得hexo使用起来比worldpress要好用很多，门槛低好上手。</li>
-<li>Next主题好看啊！</li>
-</ul>
-</li>
-</ul>
-<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
-<li><code>brew</code>（自行搜索安装啦）、<code>nodejs</code>、<code>git</code>、<code>github账号</code>以及命名为<code>yourname.github.io</code>的仓库、安装过程中爬梯会更快些，笔者在安装的过程中没有爬梯，简直生不如死QAQ~~~</li>
-</ul>
-<h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> brew install git</span></span><br></pre></td></tr></table></figure>
-<p>  在bash中输入该命令行可以自动安装git （mac其实有自带的git ，但是我自己还是安装了）。运行 <code>git --version</code> ,若看到版本号后就代表安装成功了。</p>
-  <img src="/2018/08/29/基于Github和Hexo的博客搭建踩坑记/shell01.png">
-<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">  $</span><span class="bash"> brew install npm</span></span><br><span class="line">```   </span><br><span class="line">  安装完成后，注意看一下配置文件是否正确，文件路径`~/package.json`</span><br><span class="line">```json</span><br><span class="line">  //这是我的配置文件信息</span><br><span class="line">  &#123;</span><br><span class="line">    "name": "bruce",</span><br><span class="line">    "version": "1.0.0",</span><br><span class="line">    "private": true,</span><br><span class="line">    "description": "bruce",</span><br><span class="line">    "main": "index.js",</span><br><span class="line">    "dependencies": &#123;</span><br><span class="line">      "express": "^4.16.3"  //一个基于nodejs的web开发框架，是我自己装的，不用管</span><br><span class="line">    &#125;,</span><br><span class="line">    "devDependencies": &#123;&#125;,</span><br><span class="line">    "scripts": &#123;</span><br><span class="line">      "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"</span><br><span class="line">    &#125;,</span><br><span class="line">    "keywords": [],</span><br><span class="line">    "author": "",</span><br><span class="line">    "license": "ISC"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>其中<code>&quot;private&quot;:true</code>， <code>&quot;description&quot;:&quot;xxx&quot;</code> 两个属性要有，我安装完nodejs时配置文件中这两个字段为空，导致命令行运行 <code>npm -v</code> 时会有2个warn报错信息，虽然不会影响运行，但作为一个tester（其实是强迫症哈哈哈）实在是看不下去，于是找到解决办法解决了。<br>安装完成后，<code>npm -v</code> 能看到版本信息就代表安装成功了！</p>
-<img src="/2018/08/29/基于Github和Hexo的博客搭建踩坑记/shell02.png">
-<h2 id="安装HEXO"><a href="#安装HEXO" class="headerlink" title="安装HEXO"></a>安装HEXO</h2>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo -g</span></span><br><span class="line"><span class="meta">#</span><span class="bash">-g 全局安装</span></span><br></pre></td></tr></table></figure>
-<p>  安装时如果出现<em>Error: Permission denied</em>的情况，使用 <code>sudo npm install  hexo -g</code> 即可。<br>  安装过程会比较慢，取决于你与github之间的连接速度，安装完成后，使用<code>hexo -v</code>来查看是否安装成功。</p>
-<h2 id="初始化hexo"><a href="#初始化hexo" class="headerlink" title="初始化hexo"></a>初始化hexo</h2><p>  在~目录下，创建一个blog文件夹，并在该文件夹中初始化hexo，命令行如下：<br>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">  mkdir blog</span></span><br><span class="line"><span class="meta">$</span><span class="bash">  <span class="built_in">cd</span> blog</span></span><br><span class="line"><span class="meta">$</span><span class="bash">  hexo init</span></span><br></pre></td></tr></table></figure></p>
-<p>  初始化成功后，使用<code>ls -l</code>可以看到以下文件：</p>
-  <img src="/2018/08/29/基于Github和Hexo的博客搭建踩坑记/shell03.png">
-<p>  此时使用  <code>$  hexo  server</code> 或者 <code>$  hexo s</code> 就可以在本地启动hexo,打开 <code>http://localhost:4000/</code>就可以看到本地的blog系统了。</p>
-  <img src="/2018/08/29/基于Github和Hexo的博客搭建踩坑记/shell04.png">
-<blockquote>
-<p> 到这里，其实已经完成了一大部分了。那么问题来了，怎么讲blog部署到自己的github仓库中  去，并能够在外网访问呢？这里就要用到刚才准备好的github账号了。</p>
-</blockquote>
-<h2 id="配置并部署HEXO"><a href="#配置并部署HEXO" class="headerlink" title="配置并部署HEXO"></a>配置并部署HEXO</h2><blockquote>
-<p>配置hexo与github的连接<br>打开刚才blog目录中的yaml格式的配置文件_config.yml，需要注意的地方：yaml格式的文件每个冒号后面要加空格，换行时缩进需要严格控制（具体可以百度/谷歌 YAML文件），不然会影响到配置文件结构不对，导致部署失败。可以用vi、sublime 或者其他的文本工具编辑。</p>
-</blockquote>
-<p>其中两个地方配置需要注意，其他的配置可以自己去研究一下哈~<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Nowhere</span>            <span class="string">//blog名</span></span><br><span class="line"><span class="attr">subtitle:</span>                 <span class="string">//副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">xxx</span>          <span class="string">//描述</span></span><br><span class="line"><span class="attr">keywords:</span>                 <span class="string">//关键字</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">bruce</span>             <span class="string">//作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-Hans</span>         <span class="string">//语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">Asia/Shanghai</span>   <span class="string">//时区</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="attr">https://github.com/bruce0312/bruce0312.github.io</span>  <span class="string">//刚才前期准备的仓库</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></p>
-<p>设置完成后，保存。</p>
-<ul>
-<li>hexo部署<br><code>$  hexo generate |  $  hexo g</code><br><code>$  hexo deploy  |  $  hexo d</code><br>在部署的时候，会让你输入github的账号密码，如果不想输入，也可以自己先配置一下。<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">  git config user.emial github_email</span></span><br><span class="line"><span class="meta">$</span><span class="bash">  git config user.name github_name</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>其中遇到一个坑，在deploy的时候提示我  <em>ERROR Deployer not found: git</em>；<br>这个问题需要安装<code>hexo-deployer-git</code>来解决，命令为：<br><code>$  npm install hexo-deployer-git --save</code></p>
-<p>好了，到这里部署成功后，blog基本搭建完成了，可以去<code>yourname.github.io</code>中查看的你成果啦~</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo 常用的命令</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new <span class="string">"postName"</span>       <span class="comment">#新建文章 </span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new page <span class="string">"pageName"</span>  <span class="comment">#新建页面 </span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo generate             <span class="comment">#生成静态页面至public目录 </span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo server               <span class="comment">#开启预览访问端口（默认端口4000，'ctrl + c'关闭server） </span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo deploy               <span class="comment">#将.deploy目录部署到GitHub </span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo <span class="built_in">help</span>                 <span class="comment">#查看帮助 </span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo version              <span class="comment">#查看Hexo的版本</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo clean                <span class="comment">#清除hexo的缓存</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="安装next主题"><a href="#安装next主题" class="headerlink" title="安装next主题"></a>安装next主题</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">  <span class="built_in">cd</span> blog/</span></span><br><span class="line"><span class="meta">$</span><span class="bash">  git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next    <span class="comment">#新地址</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash">  git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next       <span class="comment">#旧地址（我用的是这个）</span></span></span><br></pre></td></tr></table></figure>
-<p>下载完成后， <code>$  vi _config.yml</code>  修改hexo的配置文件中的theme字段，修改为<code>theme:  next</code>后保存，运行<code>$  hexo s</code> 就可以重新加载在本地预览了~next主题自带四种风格的样式，可以进入<code>/blog/themes/next</code>中打开<code>_config.yml</code>配置文件，在<code>Schemes</code>中可以修改，笔者用的是<code>Pisces</code>啦，感觉还不错。其他的自定义配置都可以在这个配置文件中修改，感兴趣的可以自己去折腾哈！</p>
-<h2 id="PS-Github账号创建ssh密钥"><a href="#PS-Github账号创建ssh密钥" class="headerlink" title="PS.Github账号创建ssh密钥"></a>PS.Github账号创建ssh密钥</h2><blockquote>
-<p>Q: 为什么要使用ssh密钥？<br>  A: 使用ssh密钥来和github通信更加方便快捷安全，省去输入账号密码的时间。</p>
-</blockquote>
-<h3 id="a-生成本地电脑上的SSH-Key"><a href="#a-生成本地电脑上的SSH-Key" class="headerlink" title="a.生成本地电脑上的SSH Key"></a>a.生成本地电脑上的SSH Key</h3><p>首先要检查本地电脑上是否存在SSH key<br><code>$  ls  -al ~/.ssh</code>  如果没有存在，会显示<em>No such file or directory；</em>如果已经存在，会显示<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件。<br>如果我们没有生成过SSH key，那么我们需要先生成本机的SSH key<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">  ssh-keygen -t rsa -C <span class="string">"your_email@example.com"</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">-t 秘钥类型</span></span><br><span class="line"><span class="meta">#</span><span class="bash">-C Comment 这里可以填写你自己的github邮箱账号，主要是为了记录密钥的用途</span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>生成成功后，终端中会显示：<blockquote>
-<p>Generating public/private rsa key pair.<br>Enter file in which to save the key (/Users/xxx/.ssh/id_rsa):  //提示你密钥保存的路径，直接默认ENTER即可。</p>
-</blockquote>
-</li>
-<li>回车后提示：</li>
-</ul>
-<blockquote>
-<p>Created directory ‘/Users/xxx/.ssh’.<br>  Enter passphrase (empty for no passphrase): //提示输入 passphrase，每次与 GitHub 通信都会要求输入 passphrase，以避免某些「失误」，这里我怕麻烦直接ENTER了，因为输了以后，每次通信都需要输入passphrase。</p>
-</blockquote>
-<ul>
-<li>回车后提示：</li>
-</ul>
-<blockquote>
-<p>Your identification has been saved in /Users/xxx/.ssh/id_rsa.<br>Your public key has been saved in /Users/xxx/.ssh/id_rsa.pub.<br>The key fingerprint is:<br>xxxxxx    <a href="mailto:your_email@example.com" target="_blank" rel="noopener">your_email@example.com</a><br>The key’s randomart image is:（后面图形省略）</p>
-</blockquote>
-<p>此时，将<code>id_rsa.pub</code>中的密钥信息copy出来，方法有多种，比如最方便的如：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">  pbcopy &lt; ~/.ssh/id_rsa.pub</span></span><br></pre></td></tr></table></figure></p>
-<p>  或者用cat命令查看，手动copy。</p>
-<h3 id="b-在github中设置Deploy-Key"><a href="#b-在github中设置Deploy-Key" class="headerlink" title="b.在github中设置Deploy Key"></a>b.在github中设置Deploy Key</h3><p>接下来，去github中设置你的deploy key，进入刚才准备好的<code>yourname.github.io</code>仓库，进入<code>Settings - &gt;  Deploy  keys  -  &gt;  Add  deploy key</code></p>
-<img src="/2018/08/29/基于Github和Hexo的博客搭建踩坑记/github01.png">
-<p>title：一般写用途<br>Key：粘贴刚才复制的秘钥信息<br>Allow write access：true<br>点击Add Key就可以保存成功了。<br>测试key能否正常使用：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">  ssh -T git@github.com</span></span><br></pre></td></tr></table></figure></p>
-<p>如果看到如下的提示，就说明配置成功了。</p>
-<blockquote>
-<p>Thanks For Watching!</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bruce">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nowhere">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/13/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T00:07:22+08:00">
-                2018-08-13
-              </time>
+              <a href="/2018/08/29/基于Github和Hexo的博客搭建踩坑记/" rel="next" title="基于Github和Hexo的博客搭建踩坑记">
+                <i class="fa fa-chevron-left"></i> 基于Github和Hexo的博客搭建踩坑记
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -794,10 +482,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -805,6 +494,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -827,8 +520,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -902,6 +604,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初衷"><span class="nav-number">1.</span> <span class="nav-text">初衷</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装前期准备工作"><span class="nav-number">2.</span> <span class="nav-text">安装前期准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文中用到的插件版本"><span class="nav-number">3.</span> <span class="nav-text">本文中用到的插件版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装必备的基础工具"><span class="nav-number">4.</span> <span class="nav-text">安装必备的基础工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装docker"><span class="nav-number">5.</span> <span class="nav-text">安装docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装kubernetes环境"><span class="nav-number">6.</span> <span class="nav-text">安装kubernetes环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#切换su用户"><span class="nav-number">6.1.</span> <span class="nav-text">切换su用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装kubernetes软件源密钥"><span class="nav-number">6.2.</span> <span class="nav-text">安装kubernetes软件源密钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装kubernetes软件源"><span class="nav-number">6.3.</span> <span class="nav-text">安装kubernetes软件源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署master节点"><span class="nav-number">6.4.</span> <span class="nav-text">部署master节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署node节点"><span class="nav-number">6.5.</span> <span class="nav-text">部署node节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装kubernetes-dashboard"><span class="nav-number">6.6.</span> <span class="nav-text">安装kubernetes dashboard</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改type为NodePort"><span class="nav-number">6.6.1.</span> <span class="nav-text">修改type为NodePort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备kubernetes-dashboard-rbac-yaml认证文件"><span class="nav-number">6.6.2.</span> <span class="nav-text">准备kubernetes-dashboard-rbac.yaml认证文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署-kubernetes-dashboard"><span class="nav-number">6.6.3.</span> <span class="nav-text">部署 kubernetes-dashboard</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装监控插件-heapster"><span class="nav-number">6.7.</span> <span class="nav-text">安装监控插件 heapster</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#master节点参与工作负载"><span class="nav-number">7.</span> <span class="nav-text">master节点参与工作负载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题记录"><span class="nav-number">8.</span> <span class="nav-text">问题记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充"><span class="nav-number">9.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用secret"><span class="nav-number">9.1.</span> <span class="nav-text">如何使用secret</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ingress暴露Https链接时遇到的问题"><span class="nav-number">9.2.</span> <span class="nav-text">Ingress暴露Https链接时遇到的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ERP搭建-java服务-启动时redis无法连接"><span class="nav-number">9.3.</span> <span class="nav-text">ERP搭建(java服务)启动时redis无法连接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1049,6 +767,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
