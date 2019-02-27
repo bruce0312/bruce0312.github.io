@@ -417,7 +417,7 @@
 </ul>
 <h2 id="ERP搭建-java服务-启动时redis无法连接"><a href="#ERP搭建-java服务-启动时redis无法连接" class="headerlink" title="ERP搭建(java服务)启动时redis无法连接"></a>ERP搭建(java服务)启动时redis无法连接</h2><img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q1.png">
 <ul>
-<li>修改redis.conf中的配置,使redis监听所有的ip段,增加<code>bind 0.0.0.0</code>即可。</li>
+<li>修改/etc/redis/6379.conf中的配置,使redis监听所有的ip段,增加<code>bind 0.0.0.0</code>即可。</li>
 </ul>
 <img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
 

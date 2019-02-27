@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route-q2.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q1.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
-<meta property="og:updated_time" content="2019-02-26T11:40:24.596Z">
+<meta property="og:updated_time" content="2019-02-27T06:10:59.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kubernetes 基础环境搭建及问题记录">
 <meta name="twitter:description" content="初衷 由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。  安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.">
@@ -421,7 +421,7 @@
 </ul>
 <h2 id="ERP搭建-java服务-启动时redis无法连接"><a href="#ERP搭建-java服务-启动时redis无法连接" class="headerlink" title="ERP搭建(java服务)启动时redis无法连接"></a>ERP搭建(java服务)启动时redis无法连接</h2><img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q1.png">
 <ul>
-<li>修改redis.conf中的配置,使redis监听所有的ip段,增加<code>bind 0.0.0.0</code>即可。</li>
+<li>修改/etc/redis/6379.conf中的配置,使redis监听所有的ip段,增加<code>bind 0.0.0.0</code>即可。</li>
 </ul>
 <img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
 
