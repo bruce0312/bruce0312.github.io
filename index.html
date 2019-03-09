@@ -403,7 +403,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/Docker-Registry安装和应用小记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bruce">
@@ -422,7 +422,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/26/kubernetes-基础环境搭建及问题记录/" itemprop="url">kubernetes 基础环境搭建及问题记录</a></h1>
+                <a class="post-title-link" href="/2018/12/05/Docker-Registry安装和应用小记/" itemprop="url">Docker Registry安装和应用小记</a></h1>
         
 
         <div class="post-meta">
@@ -434,8 +434,193 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T17:30:32+08:00">
-                2018-12-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T00:16:57+08:00">
+                2018-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Docker Registry安装和应用小记</p>
+</blockquote>
+<h1 id="安装机器地址"><a href="#安装机器地址" class="headerlink" title="安装机器地址"></a>安装机器地址</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">master 172.16.147.129 master.bruce.com</span><br></pre></td></tr></table></figure>
+<h1 id="获取registry官方镜像-此处选择tag为2的私有仓库版本"><a href="#获取registry官方镜像-此处选择tag为2的私有仓库版本" class="headerlink" title="获取registry官方镜像(此处选择tag为2的私有仓库版本)"></a>获取registry官方镜像(此处选择tag为2的私有仓库版本)</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此处选用的版本为 registry:2 的版本</span></span><br><span class="line">docker pull registry:2</span><br></pre></td></tr></table></figure>
+<h1 id="创建auth认证文件htpasswd"><a href="#创建auth认证文件htpasswd" class="headerlink" title="创建auth认证文件htpasswd"></a>创建auth认证文件htpasswd</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只是生成htpasswd文件，生成完成后容器就会退出</span></span><br><span class="line">docker run --entrypoint htpasswd registry:2 -Bbn &#123;username&#125; &#123;password&#125; &gt;&gt; htpasswd</span><br><span class="line">docker run --entrypoint htpasswd registry:2 -Bbn user password &gt;&gt; htpasswd</span><br></pre></td></tr></table></figure>
+<h1 id="使用Docker-Compose创建Docker-Registry服务"><a href="#使用Docker-Compose创建Docker-Registry服务" class="headerlink" title="使用Docker Compose创建Docker Registry服务"></a>使用Docker Compose创建Docker Registry服务</h1><h2 id="准备docker-registry-yml-文件"><a href="#准备docker-registry-yml-文件" class="headerlink" title="准备docker registry yml 文件"></a>准备docker registry yml 文件</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker registry yml 文件</span></span><br><span class="line"><span class="attr">version:</span> <span class="string">'2'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  registry:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">registry:2</span></span><br><span class="line"><span class="attr">    hostname:</span> <span class="string">registry-test</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"5000:5000"</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">TZ="Asia/Shanghai"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"REGISTRY_AUTH=htpasswd"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/home/bruce/docker-registry/auth:/auth</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/home/bruce/docker-registry/registry:/var/lib/registry</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
+<h2 id="Docker-Registry-目录树结构"><a href="#Docker-Registry-目录树结构" class="headerlink" title="Docker Registry 目录树结构"></a>Docker Registry 目录树结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker-registry/</span><br><span class="line">├── auth</span><br><span class="line">│   └── htpasswd</span><br><span class="line">├── docker-compose.yml</span><br><span class="line">└── registry</span><br></pre></td></tr></table></figure>
+<h2 id="Docker-Registry-相关命令"><a href="#Docker-Registry-相关命令" class="headerlink" title="Docker Registry 相关命令"></a>Docker Registry 相关命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动服务docker（需要在 docker-compose.yml 文件所在目录运行）</span></span><br><span class="line">docker-compose up -d</span><br><span class="line"><span class="comment"># 查看registry服务</span></span><br><span class="line">docker-compose ps</span><br><span class="line"><span class="comment"># 停止registry服务 </span></span><br><span class="line">docker-compose <span class="built_in">kill</span> registry</span><br><span class="line"><span class="comment"># 删除registry服务</span></span><br><span class="line">docker-compose rm registry</span><br><span class="line"><span class="comment"># 进入容器查看registry信息</span></span><br><span class="line">docker-compose <span class="built_in">exec</span>  registry sh</span><br></pre></td></tr></table></figure>
+<h1 id="记录Docker-Registry-Server地址"><a href="#记录Docker-Registry-Server地址" class="headerlink" title="记录Docker Registry Server地址"></a>记录Docker Registry Server地址</h1><p><a href="http://master.bruce.com:5000" target="_blank" rel="noopener">http://master.bruce.com:5000</a></p>
+<h1 id="允许HTTP访问Docker-Registry"><a href="#允许HTTP访问Docker-Registry" class="headerlink" title="允许HTTP访问Docker Registry"></a>允许HTTP访问Docker Registry</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># (若是较新的docker版本中 修改/etc/default/docker中的$DOCKER_OPTS 即可)</span></span><br><span class="line">sudo vim /etc/systemd/system/multi-user.target.wants/docker.service</span><br><span class="line"><span class="comment"># 在ExecStart中增加--insecure-registry=master.bruce.com:5000参数，并应用新的配置</span></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/05/Docker-Registry安装和应用小记/docker-registry-http-1.png">
+<img src="/2018/12/05/Docker-Registry安装和应用小记/docker-registry-http-2.png">
+<h1 id="登录Docker-Registry"><a href="#登录Docker-Registry" class="headerlink" title="登录Docker Registry"></a>登录Docker Registry</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker login master.bruce.com:5000</span><br><span class="line"><span class="comment"># Username: user</span></span><br><span class="line"><span class="comment"># Password: password</span></span><br></pre></td></tr></table></figure>
+<h1 id="测试向私有仓库推送、下载image"><a href="#测试向私有仓库推送、下载image" class="headerlink" title="测试向私有仓库推送、下载image"></a>测试向私有仓库推送、下载image</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker image tag myapp master.bruce.com:5000/myapp:v1</span><br><span class="line">docker push master.bruce.com:5000/myapp:v1</span><br><span class="line">docker rmi master.bruce.com:5000/myapp:v1</span><br><span class="line">docker pull master.bruce.com:5000/myapp:v1</span><br></pre></td></tr></table></figure>
+<h1 id="访问registry-api并查看仓库内的镜像信息"><a href="#访问registry-api并查看仓库内的镜像信息" class="headerlink" title="访问registry-api并查看仓库内的镜像信息"></a>访问registry-api并查看仓库内的镜像信息</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl http://master.bruce.com:5000/v2/_catalog</span><br><span class="line"><span class="comment"># 更多api使用方式查看：https://docs.docker.com/registry/spec/api/</span></span><br></pre></td></tr></table></figure>
+<h1 id="docker-registry在kubernetes上的应用"><a href="#docker-registry在kubernetes上的应用" class="headerlink" title="docker-registry在kubernetes上的应用"></a>docker-registry在kubernetes上的应用</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先需要创建 docker-registry secret</span></span><br><span class="line"><span class="comment"># 然后在应用部署文件中的引用镜像 填入private docker registry 下的 image 地址即可</span></span><br><span class="line">kubectl create secret docker-registry regsecret --docker-server=&#123;docker-reg-server&#125; --docker-username=&#123;username&#125; --docker-password=&#123;password&#125; --docker-email=&#123;your-email-address&#125; --namespace=&#123;namespace&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="删除私有仓库内镜像信息"><a href="#删除私有仓库内镜像信息" class="headerlink" title="删除私有仓库内镜像信息"></a>删除私有仓库内镜像信息</h1><ul>
+<li>在kubernetes的环境中使用docker registry，每次部署都会生成一个tag的docker image，长此以往，docker registry占用的硬盘会越来越大，而且其中无用的包占比特别高，所以在网上找到了一个使用python编写的脚本，用来定时清除无用的docker image，以释放硬盘空间节省资源。</li>
+</ul>
+<blockquote>
+<p>Ref: <a href="https://github.com/burnettk/delete-docker-registry-image" target="_blank" rel="noopener">https://github.com/burnettk/delete-docker-registry-image</a> </p>
+</blockquote>
+<h2 id="安装-delete-docker-registry-image-脚本"><a href="#安装-delete-docker-registry-image-脚本" class="headerlink" title="安装 delete_docker_registry_image 脚本"></a>安装 delete_docker_registry_image 脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl https://raw.githubusercontent.com/burnettk/delete-docker-registry-image/master/delete_docker_registry_image.py | sudo tee /usr/<span class="built_in">local</span>/bin/delete_docker_registry_image &gt;/dev/null</span><br><span class="line">sudo chmod a+x /usr/<span class="built_in">local</span>/bin/delete_docker_registry_image</span><br></pre></td></tr></table></figure>
+<h2 id="加入环境变量"><a href="#加入环境变量" class="headerlink" title="加入环境变量"></a>加入环境变量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意！！！ </span></span><br><span class="line"><span class="comment"># 此处的地址为自己设置的docker registry所在地址，否则会使用默认地址。</span></span><br><span class="line"><span class="comment"># 使用默认地址导致使用脚本时会无法找到目录。</span></span><br><span class="line"><span class="built_in">export</span> REGISTRY_DATA_DIR=/home/bruce/docker-registry/registry/docker/registry/v2</span><br></pre></td></tr></table></figure>
+<h2 id="测试删除"><a href="#测试删除" class="headerlink" title="测试删除"></a>测试删除</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo delete_docker_registry_image --image &#123;what image want to be deleted&#125;</span><br><span class="line">sudo delete_docker_registry_image --image <span class="built_in">test</span>-myapps/app</span><br></pre></td></tr></table></figure>
+<h1 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h1><ul>
+<li>如果docker配置了代理，那么docker registry的仓库地址需要加入到/etc/systemd/system/docker.service.d/https-proxy.conf 中的NO_PROXY中去（如果系统挂了代理，最好也把仓库地址放到全局的.bashrc中的no_proxy中去，以防无法访问），否则在docker login时会无法登陆。</li>
+<li>当无法登陆私有仓库时，并找不到对应解决办法，systemctl restart docker 是最有效的解决办法</li>
+</ul>
+<blockquote>
+<p>Thanks for watching!</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/kubernetes-基础环境搭建及问题记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bruce">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Knowhere">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/26/kubernetes-基础环境搭建及问题记录/" itemprop="url">kubernetes 基础环境搭建及问题记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T00:30:32+08:00">
+                2018-11-26
               </time>
             
 
@@ -520,7 +705,7 @@
 <h2 id="安装kubernetes软件源密钥"><a href="#安装kubernetes软件源密钥" class="headerlink" title="安装kubernetes软件源密钥"></a>安装kubernetes软件源密钥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -  <span class="comment">#安装kubernetes软件源密钥</span></span><br></pre></td></tr></table></figure>
 <h2 id="安装kubernetes软件源"><a href="#安装kubernetes软件源" class="headerlink" title="安装kubernetes软件源"></a>安装kubernetes软件源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list</span><br><span class="line">deb http://apt.kubernetes.io/ kubernetes-xenial main</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">apt-get update        <span class="comment">#添加并更新软件源</span></span><br></pre></td></tr></table></figure>
 <h2 id="部署master节点"><a href="#部署master节点" class="headerlink" title="部署master节点"></a>部署master节点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装kubelet kubectl kubeadm </span></span><br><span class="line">apt-get install -y kubelet=1.8.2-00</span><br><span class="line">apt-get install -y kubectl=1.8.2-00</span><br><span class="line">apt-get install -y kubeadm=1.8.2-00</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装完成后修改部分属性,保证kubelet可以正常运行</span></span><br><span class="line">sudo vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf</span><br><span class="line">在KUBELET_KUBECONFIG_ARGS中添加参数：--fail-swap-on=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化master节点</span></span><br><span class="line">sudo kubeadm init --kubernetes-version=v1.10.0 --token-ttl=0 --skip-preflight-checks --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=&#123;master-ip&#125;</span><br><span class="line"></span><br><span class="line">--kubernetes-version=v1.10.0  <span class="comment"># 制定kubernetes版本</span></span><br><span class="line">--token-ttl=0  <span class="comment"># ttl(time to live)token不会过期</span></span><br><span class="line">--pod-network-cidr=192.168.0.0/16  <span class="comment"># pod网络，采用calico网络部署，则需要calico有效的网段</span></span><br><span class="line">--apiserver-advertise-address=&#123;master-ip&#125;  <span class="comment"># 制定api-server注册地址</span></span><br><span class="line">--skip-preflight-checks  <span class="comment"># 解决一个kubelet目录不空的小bug</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
+<img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化网络</span></span><br><span class="line">mkdir -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">sudo cp -i /etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">sudo chown $(id -u):$(id -g) <span class="variable">$HOME</span>/.kube/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 记录子节点加入集群的命令</span></span><br><span class="line">kubeadm join --token 0125ca.fe842bbac676cb16 172.16.147.129:6443 --discovery-token-ca-cert-hash sha256:1c65574f4431be8ea7be764eb7e56643776bbabaae24f85e1819545d70d9698d</span><br></pre></td></tr></table></figure>
 <h2 id="部署node节点"><a href="#部署node节点" class="headerlink" title="部署node节点"></a>部署node节点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装kubelet kubectl kubeadm</span></span><br><span class="line"><span class="comment"># 安装完成后 使用kubeadm join 命令加入集群</span></span><br><span class="line">sudo kubeadm join --token [token] --skip-preflight-checks --discovery-token-ca-cert-hash sha256:[CA key] [kubemaster_host]:[kubemaster_ip]</span><br><span class="line"><span class="comment"># 获取kubeadm join命令最简单的办法，在kubeadm init 后拿到给出的kubeadm join命令存储下来即可</span></span><br><span class="line"><span class="comment"># 手动获取</span></span><br><span class="line">[token]获取 </span><br><span class="line">1. kubeadm token list  or  kubeadm token create</span><br><span class="line">[CA key]获取</span><br><span class="line">2. openssl x509 -pubkey -<span class="keyword">in</span> /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed <span class="string">'s/^.* //'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 子节点初始化网络</span></span><br><span class="line">mkdir -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">sudo scp &#123;master-server&#125;:/etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">sudo chown $(id -u):$(id -g) <span class="variable">$HOME</span>/.kube/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改子节点ROLES</span></span><br><span class="line">kubectl label node &lt;node-name&gt; node-role.kubernetes.io/node=node</span><br></pre></td></tr></table></figure>
 <h2 id="安装kubernetes-dashboard"><a href="#安装kubernetes-dashboard" class="headerlink" title="安装kubernetes dashboard"></a>安装kubernetes dashboard</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载kubernetes-dashboard yaml文件 </span></span><br><span class="line">wget https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml</span><br></pre></td></tr></table></figure>
@@ -550,11 +735,11 @@
 <p>3</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Q. master上的pod访问不到node上的pod，ip ping不通</span><br><span class="line">A.</span><br><span class="line"></span><br><span class="line">ip route <span class="comment">#配置路由器静态路由的命令，可以查看机器上的网卡路由信息</span></span><br><span class="line">tcpdump -i  &#123;网卡名称&#125;</span><br><span class="line">tcpdump -i cali43e7284e19c </span><br><span class="line"></span><br><span class="line">每个pod都对应一个ip和一个网卡地址,选取master上的pod1和node上的pod2,使用tcpdump抓包,在pod1中ping pod2，查看网络信息，发现pod1上的网络信息存在问题</span><br><span class="line">`09:34:46.809745 ARP, Reply 169.254.1.1 is-at ee:ee:ee:ee:ee:ee (oui Unknown), length 28`</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route.png">
+<img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/ip-route.png">
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">google后发现问题解决方案</span><br><span class="line"><span class="string">'https://docs.projectcalico.org/v3.2/reference/node/configuration#ip-autodetection-methods'</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route-q1.png">
+<img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/ip-route-q1.png">
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在calico.yaml文件中加上一下属性，重新apply即可</span><br><span class="line"><span class="comment"># https://github.com/projectcalico/calico/issues/2042#issuecomment-408488357</span></span><br><span class="line">- name: IP_AUTODETECTION_METHOD</span><br><span class="line">  value: <span class="string">"interface=ens33"</span> <span class="comment">#指定网卡</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route-q2.png">
+<img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/ip-route-q2.png">
 <hr>
 <h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="如何使用secret"><a href="#如何使用secret" class="headerlink" title="如何使用secret"></a>如何使用secret</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建tls.crt tls.key 并生成 k8s secret,使用secret</span></span><br><span class="line"><span class="comment"># tls类型的secret</span></span><br><span class="line"></span><br><span class="line">openssl genrsa -out tls.key 2048</span><br><span class="line">openssl req -new -x509 -key tls.key -out tls.crt -subj /C=CN/ST=Shanghai/L=Shanghai/O=Devops/CN=&#123;service hosts&#125;</span><br><span class="line">kubectl create secret tls &#123;secret-name&#125;  --cert=&#123;tls.crt-location&#125; --key=&#123;tls.key-location&#125;  -n &#123;namespace&#125;</span><br><span class="line"></span><br><span class="line">kubectl explian ingress.spec.tls</span><br><span class="line">spec:</span><br><span class="line">  tls:</span><br><span class="line">  - hosts:</span><br><span class="line">    - xx.xx.com</span><br><span class="line">      secretName: &#123;secret-name&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># generic类型的secret</span></span><br><span class="line"><span class="comment">## htpasswd生成的密码</span></span><br><span class="line">htpasswd -c auth kubedashboardauth       <span class="comment"># htpasswd -c auth &#123;username&#125; </span></span><br><span class="line">kubectl create secret generic kubedashboard-auth-secret -n kube-system --from-file auth</span><br><span class="line">kubectl get secret kubedashboard-auth-secret -o yaml -n kube-system</span><br><span class="line"></span><br><span class="line"><span class="comment">## 明文密码</span></span><br><span class="line">kubectl create secret generic kubedashboard-auth-secret --from-literal=username=bruce --from-literal=password=123456 -n kube-system</span><br></pre></td></tr></table></figure>
 <h2 id="Ingress暴露Https链接时遇到的问题"><a href="#Ingress暴露Https链接时遇到的问题" class="headerlink" title="Ingress暴露Https链接时遇到的问题"></a>Ingress暴露Https链接时遇到的问题</h2><blockquote>
@@ -566,11 +751,11 @@
 <li><p>Ingress Annotation Refer<br><code>https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/</code></p>
 </li>
 </ul>
-<h2 id="ERP搭建-java服务-启动时redis无法连接"><a href="#ERP搭建-java服务-启动时redis无法连接" class="headerlink" title="ERP搭建(java服务)启动时redis无法连接"></a>ERP搭建(java服务)启动时redis无法连接</h2><img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q1.png">
+<h2 id="ERP搭建-java服务-启动时redis无法连接"><a href="#ERP搭建-java服务-启动时redis无法连接" class="headerlink" title="ERP搭建(java服务)启动时redis无法连接"></a>ERP搭建(java服务)启动时redis无法连接</h2><img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/redis-q1.png">
 <ul>
 <li>修改/etc/redis/6379.conf中的配置,使redis监听所有的ip段,增加<code>bind 0.0.0.0</code>即可。</li>
 </ul>
-<img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
+<img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
 <blockquote>
 <p>Thanks For Watching!</p>
 </blockquote>
@@ -1003,7 +1188,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1014,7 +1199,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1025,7 +1210,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

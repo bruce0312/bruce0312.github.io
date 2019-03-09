@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="linux,kubernetes,docker,questions,测试环境," />
+  <meta name="keywords" content="docker,kubernetes,linux,questions,测试环境," />
 
 
 
@@ -80,24 +80,24 @@
 
 
 <meta name="description" content="初衷 由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。  安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.">
-<meta name="keywords" content="linux,kubernetes,docker,questions,测试环境">
+<meta name="keywords" content="docker,kubernetes,linux,questions,测试环境">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kubernetes 基础环境搭建及问题记录">
-<meta property="og:url" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/11/26/kubernetes-基础环境搭建及问题记录/index.html">
 <meta property="og:site_name" content="Knowhere">
 <meta property="og:description" content="初衷 由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。  安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route-q1.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route-q2.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q1.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
-<meta property="og:updated_time" content="2019-02-27T09:47:55.579Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/kubernetes-基础环境搭建及问题记录/ip-route.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/kubernetes-基础环境搭建及问题记录/ip-route-q1.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/kubernetes-基础环境搭建及问题记录/ip-route-q2.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/kubernetes-基础环境搭建及问题记录/redis-q1.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
+<meta property="og:updated_time" content="2019-03-09T06:40:37.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kubernetes 基础环境搭建及问题记录">
 <meta name="twitter:description" content="初衷 由于公司采用的是微服务的服务架构，这段时间运维（人少，只有一位大佬呀心疼一波）那边有一丢丢压力，我想去帮助一下。So，正好借此机会去学习了kubenetes的搭建，并写下了这一份搭建手册（当然自己也想掌握搭建测试环境这一项技能哈哈哈哈😄）。  安装前期准备工作 环境准备 ubuntu 16.04.5 server x64 lts  123proxy   http://118.25.xxx.">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/26/kubernetes-基础环境搭建及问题记录/"/>
 
 
 
@@ -260,7 +260,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/kubernetes-基础环境搭建及问题记录/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/kubernetes-基础环境搭建及问题记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bruce">
@@ -289,8 +289,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T17:30:32+08:00">
-                2018-12-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T00:30:32+08:00">
+                2018-11-26
               </time>
             
 
@@ -373,7 +373,7 @@
 <h2 id="安装kubernetes软件源密钥"><a href="#安装kubernetes软件源密钥" class="headerlink" title="安装kubernetes软件源密钥"></a>安装kubernetes软件源密钥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -  <span class="comment">#安装kubernetes软件源密钥</span></span><br></pre></td></tr></table></figure>
 <h2 id="安装kubernetes软件源"><a href="#安装kubernetes软件源" class="headerlink" title="安装kubernetes软件源"></a>安装kubernetes软件源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list</span><br><span class="line">deb http://apt.kubernetes.io/ kubernetes-xenial main</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">apt-get update        <span class="comment">#添加并更新软件源</span></span><br></pre></td></tr></table></figure>
 <h2 id="部署master节点"><a href="#部署master节点" class="headerlink" title="部署master节点"></a>部署master节点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装kubelet kubectl kubeadm </span></span><br><span class="line">apt-get install -y kubelet=1.8.2-00</span><br><span class="line">apt-get install -y kubectl=1.8.2-00</span><br><span class="line">apt-get install -y kubeadm=1.8.2-00</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装完成后修改部分属性,保证kubelet可以正常运行</span></span><br><span class="line">sudo vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf</span><br><span class="line">在KUBELET_KUBECONFIG_ARGS中添加参数：--fail-swap-on=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化master节点</span></span><br><span class="line">sudo kubeadm init --kubernetes-version=v1.10.0 --token-ttl=0 --skip-preflight-checks --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=&#123;master-ip&#125;</span><br><span class="line"></span><br><span class="line">--kubernetes-version=v1.10.0  <span class="comment"># 制定kubernetes版本</span></span><br><span class="line">--token-ttl=0  <span class="comment"># ttl(time to live)token不会过期</span></span><br><span class="line">--pod-network-cidr=192.168.0.0/16  <span class="comment"># pod网络，采用calico网络部署，则需要calico有效的网段</span></span><br><span class="line">--apiserver-advertise-address=&#123;master-ip&#125;  <span class="comment"># 制定api-server注册地址</span></span><br><span class="line">--skip-preflight-checks  <span class="comment"># 解决一个kubelet目录不空的小bug</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
+<img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/kubeadm-success.png">
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化网络</span></span><br><span class="line">mkdir -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">sudo cp -i /etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">sudo chown $(id -u):$(id -g) <span class="variable">$HOME</span>/.kube/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 记录子节点加入集群的命令</span></span><br><span class="line">kubeadm join --token 0125ca.fe842bbac676cb16 172.16.147.129:6443 --discovery-token-ca-cert-hash sha256:1c65574f4431be8ea7be764eb7e56643776bbabaae24f85e1819545d70d9698d</span><br></pre></td></tr></table></figure>
 <h2 id="部署node节点"><a href="#部署node节点" class="headerlink" title="部署node节点"></a>部署node节点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装kubelet kubectl kubeadm</span></span><br><span class="line"><span class="comment"># 安装完成后 使用kubeadm join 命令加入集群</span></span><br><span class="line">sudo kubeadm join --token [token] --skip-preflight-checks --discovery-token-ca-cert-hash sha256:[CA key] [kubemaster_host]:[kubemaster_ip]</span><br><span class="line"><span class="comment"># 获取kubeadm join命令最简单的办法，在kubeadm init 后拿到给出的kubeadm join命令存储下来即可</span></span><br><span class="line"><span class="comment"># 手动获取</span></span><br><span class="line">[token]获取 </span><br><span class="line">1. kubeadm token list  or  kubeadm token create</span><br><span class="line">[CA key]获取</span><br><span class="line">2. openssl x509 -pubkey -<span class="keyword">in</span> /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed <span class="string">'s/^.* //'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 子节点初始化网络</span></span><br><span class="line">mkdir -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">sudo scp &#123;master-server&#125;:/etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">sudo chown $(id -u):$(id -g) <span class="variable">$HOME</span>/.kube/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改子节点ROLES</span></span><br><span class="line">kubectl label node &lt;node-name&gt; node-role.kubernetes.io/node=node</span><br></pre></td></tr></table></figure>
 <h2 id="安装kubernetes-dashboard"><a href="#安装kubernetes-dashboard" class="headerlink" title="安装kubernetes dashboard"></a>安装kubernetes dashboard</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载kubernetes-dashboard yaml文件 </span></span><br><span class="line">wget https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml</span><br></pre></td></tr></table></figure>
@@ -403,11 +403,11 @@
 <p>3</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Q. master上的pod访问不到node上的pod，ip ping不通</span><br><span class="line">A.</span><br><span class="line"></span><br><span class="line">ip route <span class="comment">#配置路由器静态路由的命令，可以查看机器上的网卡路由信息</span></span><br><span class="line">tcpdump -i  &#123;网卡名称&#125;</span><br><span class="line">tcpdump -i cali43e7284e19c </span><br><span class="line"></span><br><span class="line">每个pod都对应一个ip和一个网卡地址,选取master上的pod1和node上的pod2,使用tcpdump抓包,在pod1中ping pod2，查看网络信息，发现pod1上的网络信息存在问题</span><br><span class="line">`09:34:46.809745 ARP, Reply 169.254.1.1 is-at ee:ee:ee:ee:ee:ee (oui Unknown), length 28`</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route.png">
+<img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/ip-route.png">
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">google后发现问题解决方案</span><br><span class="line"><span class="string">'https://docs.projectcalico.org/v3.2/reference/node/configuration#ip-autodetection-methods'</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route-q1.png">
+<img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/ip-route-q1.png">
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在calico.yaml文件中加上一下属性，重新apply即可</span><br><span class="line"><span class="comment"># https://github.com/projectcalico/calico/issues/2042#issuecomment-408488357</span></span><br><span class="line">- name: IP_AUTODETECTION_METHOD</span><br><span class="line">  value: <span class="string">"interface=ens33"</span> <span class="comment">#指定网卡</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/ip-route-q2.png">
+<img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/ip-route-q2.png">
 <hr>
 <h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="如何使用secret"><a href="#如何使用secret" class="headerlink" title="如何使用secret"></a>如何使用secret</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建tls.crt tls.key 并生成 k8s secret,使用secret</span></span><br><span class="line"><span class="comment"># tls类型的secret</span></span><br><span class="line"></span><br><span class="line">openssl genrsa -out tls.key 2048</span><br><span class="line">openssl req -new -x509 -key tls.key -out tls.crt -subj /C=CN/ST=Shanghai/L=Shanghai/O=Devops/CN=&#123;service hosts&#125;</span><br><span class="line">kubectl create secret tls &#123;secret-name&#125;  --cert=&#123;tls.crt-location&#125; --key=&#123;tls.key-location&#125;  -n &#123;namespace&#125;</span><br><span class="line"></span><br><span class="line">kubectl explian ingress.spec.tls</span><br><span class="line">spec:</span><br><span class="line">  tls:</span><br><span class="line">  - hosts:</span><br><span class="line">    - xx.xx.com</span><br><span class="line">      secretName: &#123;secret-name&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># generic类型的secret</span></span><br><span class="line"><span class="comment">## htpasswd生成的密码</span></span><br><span class="line">htpasswd -c auth kubedashboardauth       <span class="comment"># htpasswd -c auth &#123;username&#125; </span></span><br><span class="line">kubectl create secret generic kubedashboard-auth-secret -n kube-system --from-file auth</span><br><span class="line">kubectl get secret kubedashboard-auth-secret -o yaml -n kube-system</span><br><span class="line"></span><br><span class="line"><span class="comment">## 明文密码</span></span><br><span class="line">kubectl create secret generic kubedashboard-auth-secret --from-literal=username=bruce --from-literal=password=123456 -n kube-system</span><br></pre></td></tr></table></figure>
 <h2 id="Ingress暴露Https链接时遇到的问题"><a href="#Ingress暴露Https链接时遇到的问题" class="headerlink" title="Ingress暴露Https链接时遇到的问题"></a>Ingress暴露Https链接时遇到的问题</h2><blockquote>
@@ -419,11 +419,11 @@
 <li><p>Ingress Annotation Refer<br><code>https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/</code></p>
 </li>
 </ul>
-<h2 id="ERP搭建-java服务-启动时redis无法连接"><a href="#ERP搭建-java服务-启动时redis无法连接" class="headerlink" title="ERP搭建(java服务)启动时redis无法连接"></a>ERP搭建(java服务)启动时redis无法连接</h2><img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q1.png">
+<h2 id="ERP搭建-java服务-启动时redis无法连接"><a href="#ERP搭建-java服务-启动时redis无法连接" class="headerlink" title="ERP搭建(java服务)启动时redis无法连接"></a>ERP搭建(java服务)启动时redis无法连接</h2><img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/redis-q1.png">
 <ul>
 <li>修改/etc/redis/6379.conf中的配置,使redis监听所有的ip段,增加<code>bind 0.0.0.0</code>即可。</li>
 </ul>
-<img src="/2018/12/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
+<img src="/2018/11/26/kubernetes-基础环境搭建及问题记录/redis-q2.png">
 <blockquote>
 <p>Thanks For Watching!</p>
 </blockquote>
@@ -444,11 +444,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag"># linux</a>
+            <a href="/tags/docker/" rel="tag"># docker</a>
           
             <a href="/tags/kubernetes/" rel="tag"># kubernetes</a>
           
-            <a href="/tags/docker/" rel="tag"># docker</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
             <a href="/tags/questions/" rel="tag"># questions</a>
           
@@ -475,8 +475,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/22/Cronjob设置指定Docker任务定时重启/" rel="prev" title="Cronjob设置指定Docker任务定时重启">
-                Cronjob设置指定Docker任务定时重启 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/05/Docker-Registry安装和应用小记/" rel="prev" title="Docker Registry安装和应用小记">
+                Docker Registry安装和应用小记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -560,7 +560,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -571,7 +571,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -582,7 +582,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
