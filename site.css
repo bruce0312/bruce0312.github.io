@@ -1,0 +1,254 @@
+:root {
+  --paper: #f4f1e9;
+  --ink: #151515;
+  --muted: #68665f;
+  --line: rgba(21, 21, 21, 0.18);
+  --agent: #2356d8;
+  --quality: #0d7655;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--paper);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(21, 21, 21, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21, 21, 21, 0.035) 1px, transparent 1px),
+    var(--paper);
+  background-size: 48px 48px;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.site-shell {
+  width: min(1180px, calc(100% - 48px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: clamp(64px, 10vw, 132px) 0 72px;
+}
+
+.intro {
+  max-width: 860px;
+}
+
+.eyebrow {
+  margin: 0 0 24px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.intro h1 {
+  margin: 0;
+  font-family: "Songti SC", SimSun, serif;
+  font-size: clamp(48px, 8vw, 104px);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.intro-copy {
+  max-width: 690px;
+  margin: 36px 0 0;
+  color: var(--muted);
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.75;
+}
+
+.resume-section {
+  margin-top: clamp(72px, 12vw, 152px);
+  border-top: 1px solid var(--ink);
+  padding-top: 22px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.section-heading h2,
+.section-heading p {
+  margin: 0;
+}
+
+.section-heading h2 {
+  font-size: 17px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.resume-card {
+  position: relative;
+  display: flex;
+  min-height: 360px;
+  flex-direction: column;
+  padding: clamp(28px, 4vw, 48px);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.58);
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.resume-card::after {
+  position: absolute;
+  right: -96px;
+  bottom: -96px;
+  width: 210px;
+  height: 210px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  content: "";
+  opacity: 0.24;
+  transition: transform 240ms ease;
+}
+
+.resume-card:hover,
+.resume-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: currentColor;
+  box-shadow: 0 22px 54px rgba(21, 21, 21, 0.12);
+  outline: none;
+}
+
+.resume-card:hover::after,
+.resume-card:focus-visible::after {
+  transform: scale(1.12);
+}
+
+.resume-card-agent {
+  color: var(--agent);
+}
+
+.resume-card-quality {
+  color: var(--quality);
+}
+
+.card-index {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.resume-card h3 {
+  margin: 48px 0 24px;
+  color: var(--ink);
+  font-family: "Songti SC", SimSun, serif;
+  font-size: clamp(31px, 4vw, 48px);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.resume-card p {
+  max-width: 440px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.card-link {
+  margin-top: auto;
+  padding-top: 36px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.not-found {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+}
+
+.not-found-card {
+  width: min(620px, 100%);
+  border-top: 1px solid var(--ink);
+  padding-top: 24px;
+}
+
+.not-found-card .eyebrow {
+  color: var(--muted);
+}
+
+.not-found-card h1 {
+  margin: 0 0 24px;
+  font-family: "Songti SC", SimSun, serif;
+  font-size: clamp(48px, 12vw, 96px);
+  line-height: 1;
+}
+
+.not-found-card p {
+  margin: 0 0 32px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.home-link {
+  display: inline-block;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 5px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  .site-shell {
+    width: min(100% - 32px, 1180px);
+    padding-top: 48px;
+  }
+
+  .intro h1 {
+    font-size: clamp(43px, 14vw, 68px);
+    line-height: 1.04;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .section-heading p {
+    margin-top: 8px;
+  }
+
+  .resume-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-card {
+    min-height: 330px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resume-card,
+  .resume-card::after {
+    transition: none;
+  }
+}

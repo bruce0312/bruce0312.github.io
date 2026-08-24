@@ -1,0 +1,475 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+
+:root {
+  --ink: #090909;
+  --muted: #f1f1f1;
+  --line: #dddddd;
+  --screen: #e6e6e6;
+  --resume-font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+  --bullet-list-size: clamp(9.4pt, calc(8.95pt + 0.12vw), 10.15pt);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--screen);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  margin: 0;
+  color: #090909;
+  background: var(--screen);
+  font-family: var(--resume-font);
+  font-size: 10.15pt;
+  font-weight: 400;
+  line-height: 1.43;
+}
+
+.page {
+  position: relative;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  overflow: visible;
+  background: #fff;
+  page-break-after: always;
+  break-after: page;
+}
+
+.page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+.page-content {
+  position: relative;
+  z-index: 1;
+  padding: 5.5mm 11.8mm 8mm;
+}
+
+.page-2 .page-content {
+  padding-top: 5.8mm;
+}
+
+.ornament {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 58mm;
+  pointer-events: none;
+}
+
+.header {
+  margin: 0 0 5.4mm;
+  text-align: center;
+}
+
+.info-group {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  width: max-content;
+  max-width: 100%;
+  column-gap: 8.2mm;
+  row-gap: 1.65mm;
+  margin: 0 26%;
+}
+
+.name {
+  margin: 0 0 4.55mm;
+  font-size: 22pt;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.1pt;
+}
+
+.info-row {
+  display: contents;
+}
+
+.info-item {
+  display: grid;
+  grid-template-columns: 4.1mm max-content;
+  align-items: center;
+  column-gap: 2mm;
+  white-space: nowrap;
+}
+
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.icon {
+  width: 4.1mm;
+  height: 4.1mm;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: 0 0 auto;
+}
+
+.section {
+  margin-top: 3.4mm;
+}
+
+.section-title {
+  margin: 0 0 3.2mm;
+  padding: 1.25mm 3.8mm 1.25mm 4.3mm;
+  border-left: 1.45mm solid #050505;
+  background: var(--muted);
+  font-size: 12pt;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.summary-list,
+.bullet-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.summary-list li,
+.bullet-list li {
+  position: relative;
+  margin: 0 0 1.65mm;
+  padding-left: 5.4mm;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+.summary-list li::before,
+.bullet-list li::before {
+  position: absolute;
+  top: -0.25mm;
+  left: 1.25mm;
+  content: "•";
+  font-family: Arial, sans-serif;
+  font-size: 15pt;
+  line-height: 1.1;
+}
+
+.summary-list li {
+  margin-bottom: 2.15mm;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.company-block,
+.education-row {
+  font-size: 11pt;
+}
+
+.company-row,
+.education-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8mm;
+  margin: 0 0 1.2mm;
+  break-after: avoid;
+}
+
+.company,
+.school {
+  min-width: 0;
+  font-size: inherit;
+  font-weight: 700;
+  line-height: 1.28;
+}
+
+.company-block .date,
+.company-block .role,
+.education-row .date {
+  font-size: inherit;
+}
+
+.date {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 10.2pt;
+  line-height: 1.3;
+  text-align: right;
+}
+
+.role,
+.degree {
+  margin: 0 0 1.65mm;
+  font-size: 11pt;
+  line-height: 1.3;
+}
+
+.project-title {
+  margin: 1.5mm 0 1.8mm;
+  font-size: 10pt;
+  font-weight: 700;
+  line-height: 1.32;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  break-after: avoid;
+}
+
+.project-title .italic-title {
+  font-style: italic;
+}
+
+.muted-info {
+  font-size: 10pt;
+  color: #6b6b6b;
+  font-weight: 400;
+}
+
+.subhead {
+  margin: 1.15mm 0 1.15mm;
+  font-size: 10pt;
+  font-weight: 700;
+  line-height: 1.25;
+  break-after: avoid;
+}
+
+.bullet-list {
+  font-size: var(--bullet-list-size);
+  line-height: 1.45;
+}
+
+.bullet-list.compact li {
+  margin-bottom: 1.1mm;
+}
+
+.bullet-list.compact li::before {
+  top: -0.15mm;
+}
+
+.page-2 .continuation-title {
+  margin-top: 0;
+}
+
+.page-2 .company-block {
+  margin-top: 4.4mm;
+}
+
+.page-2 .typical-project {
+  margin-top: 1.8mm;
+}
+
+.page-2 .company-block.blue {
+  margin-top: 4.2mm;
+}
+
+.education-block,
+.other-block {
+  margin-top: 3.3mm;
+}
+
+.other-block .bullet-list li {
+  margin-bottom: 1.35mm;
+}
+
+@media screen {
+  body { padding: 12mm 0; }
+  .page { box-shadow: 0 3mm 10mm rgba(0, 0, 0, 0.14); }
+  .page + .page { margin-top: 12mm; }
+}
+
+@media print {
+  body { background: #fff; }
+
+  /* 质量保障版首页内容更密集，仅在打印时收紧纵向节奏，避免末条经历被拆页。 */
+  .resume-quality .page-1 .header {
+    margin-bottom: 4.3mm;
+  }
+
+  .resume-quality .page-1 .page-content {
+    padding-top: 4.8mm;
+    padding-bottom: 3mm;
+  }
+
+  .resume-quality .page-1 .section {
+    margin-top: 2.6mm;
+  }
+
+  .resume-quality .page-1 .section-title {
+    margin-bottom: 2.5mm;
+  }
+
+  .resume-quality .page-1 .summary-list li {
+    margin-bottom: 1.75mm;
+  }
+
+  .resume-quality .page-1 .project-title {
+    margin-top: 1.2mm;
+    margin-bottom: 1.5mm;
+  }
+
+  .resume-quality .page-1 .subhead {
+    margin-top: 0.9mm;
+    margin-bottom: 0.9mm;
+  }
+
+  .resume-quality .page-1 .bullet-list.compact li {
+    margin-bottom: 0.9mm;
+  }
+
+  .resume-quality .page-1 .bullet-list {
+    font-size: 9.4pt;
+    line-height: 1.42;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  html,
+  body {
+    background: #fff;
+  }
+
+  body {
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .page {
+    width: 100%;
+    min-height: auto;
+    margin: 0;
+    box-shadow: none;
+    break-after: auto;
+  }
+
+  .page + .page {
+    margin-top: 0;
+  }
+
+  .page-content {
+    padding: 24px 18px 32px;
+  }
+
+  .page-2 .page-content {
+    padding-top: 0;
+  }
+
+  .ornament {
+    height: 160px;
+  }
+
+  .header {
+    margin-bottom: 24px;
+  }
+
+  .name {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+
+  .info-group {
+    grid-template-columns: 1fr;
+    width: fit-content;
+    margin: 0 auto;
+    row-gap: 8px;
+  }
+
+  .info-item {
+    grid-template-columns: 20px minmax(0, 1fr);
+    column-gap: 8px;
+    white-space: normal;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .section {
+    margin-top: 22px;
+  }
+
+  .section-title {
+    margin-bottom: 16px;
+    padding: 8px 12px;
+    border-left-width: 5px;
+    font-size: 17px;
+  }
+
+  .summary-list,
+  .bullet-list {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .summary-list li,
+  .bullet-list li,
+  .bullet-list.compact li {
+    margin-bottom: 10px;
+    padding-left: 18px;
+    text-align: left;
+  }
+
+  .summary-list li::before,
+  .bullet-list li::before {
+    top: -1px;
+    left: 3px;
+    font-size: 20px;
+  }
+
+  .company-block,
+  .education-row {
+    font-size: 15px;
+  }
+
+  .company-row,
+  .education-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    margin-bottom: 6px;
+  }
+
+  .date {
+    white-space: normal;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .role,
+  .degree {
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .project-title {
+    margin: 14px 0 10px;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .muted-info {
+    display: block;
+    margin-top: 3px;
+    font-size: 13px;
+  }
+
+  .subhead {
+    margin: 10px 0 7px;
+    font-size: 14px;
+  }
+
+  .page-2 .company-block,
+  .page-2 .company-block.blue,
+  .education-block,
+  .other-block {
+    margin-top: 22px;
+  }
+}
