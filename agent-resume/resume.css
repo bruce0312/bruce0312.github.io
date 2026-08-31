@@ -173,6 +173,10 @@ strong {
   font-size: 11pt;
 }
 
+.experience-note {
+  margin-bottom: 3.4mm;
+}
+
 .company-row,
 .education-row {
   display: flex;
@@ -287,45 +291,67 @@ strong {
 @media print {
   body { background: #fff; }
 
-  /* 质量保障版首页内容更密集，仅在打印时收紧纵向节奏，避免末条经历被拆页。 */
+  /* 首页内容更密集，仅在打印时收紧纵向节奏，避免经历内容被拆页。 */
+  .resume-ai .page-1 .header,
   .resume-quality .page-1 .header {
     margin-bottom: 4.3mm;
   }
 
+  .resume-ai .page-1 .page-content,
   .resume-quality .page-1 .page-content {
     padding-top: 4.8mm;
     padding-bottom: 3mm;
   }
 
+  .resume-quality .page-1 .page-content {
+    padding-bottom: 0;
+  }
+
+  .resume-ai .page-1 .section,
   .resume-quality .page-1 .section {
     margin-top: 2.6mm;
   }
 
+  .resume-ai .page-1 .section-title,
   .resume-quality .page-1 .section-title {
     margin-bottom: 2.5mm;
   }
 
+  .resume-ai .page-1 .summary-list li,
   .resume-quality .page-1 .summary-list li {
     margin-bottom: 1.75mm;
   }
 
+  .resume-ai .page-1 .project-title,
   .resume-quality .page-1 .project-title {
     margin-top: 1.2mm;
     margin-bottom: 1.5mm;
   }
 
+  .resume-ai .page-1 .subhead,
   .resume-quality .page-1 .subhead {
     margin-top: 0.9mm;
     margin-bottom: 0.9mm;
   }
 
+  .resume-ai .page-1 .bullet-list.compact li,
   .resume-quality .page-1 .bullet-list.compact li {
     margin-bottom: 0.9mm;
   }
 
+  .resume-ai .page-1 .bullet-list,
   .resume-quality .page-1 .bullet-list {
     font-size: 9.4pt;
     line-height: 1.42;
+  }
+
+  .resume-quality .page-1 .bullet-list {
+    font-size: 9.3pt;
+    line-height: 1.38;
+  }
+
+  .resume-quality .page-1 .bullet-list.compact li {
+    margin-bottom: 0.72mm;
   }
 }
 
